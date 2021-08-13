@@ -110,6 +110,11 @@
         name: 名称
         sort: 排序
         summary: 简介
+        node_type: 分类
+      task:
+        name: 名称
+        category: 类别
+        url: 链接
     errors:
       models:
         user:

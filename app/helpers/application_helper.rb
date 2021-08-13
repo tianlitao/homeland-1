@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def show_html(text)
+    return nil if text.blank?
+    Rails.cache.fetch(["html", "v1.1", Digest::MD5.hexdigest(text)]) do
+      text.html_safe
+    end
+  end
+
   def markdown(text)
     return nil if text.blank?
     Rails.cache.fetch(["markdown", "v1.1", Digest::MD5.hexdigest(text)]) do

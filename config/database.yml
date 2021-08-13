@@ -1,8 +1,13 @@
 default: &default
   adapter: postgresql
-  pool: <%= ENV["DATABASE_POOL"] || 64 %>
+  pool: 5
+  host: localhost
   timeout: 5000
   encoding: utf-8
+  username: postgres
+  password: 123456
+  port: 5433
+
 
 development:
   <<: *default

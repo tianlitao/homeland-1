@@ -142,7 +142,7 @@ class Setting < RailsSettings::Base
   field :wechat_api_secret, default: ENV["wechat_api_secret"]
 
   # = Other Site Configs
-  field :admin_emails, type: :array, default: (ENV["admin_emails"] || "admin@admin.com"), separator: /[\s,]+/
+  field :admin_emails, type: :array, default: (ENV["admin_emails"] || "2423806988@qq.com"), separator: /[\s,]+/
 
   field :newbie_limit_time, type: :integer, default: 0
   field :topic_create_limit_interval, type: :integer, default: 0
@@ -220,6 +220,8 @@ class Setting < RailsSettings::Base
         twitter_api_key.present?
       when "wechat"
         wechat_api_key.present?
+      when "unipass"
+        unipass_key.present?
       else
         false
       end

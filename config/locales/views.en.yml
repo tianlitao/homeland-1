@@ -113,6 +113,8 @@
     likes: "Your favorites"
     teams: "Teams"
     back_to_front: "Back to front"
+    understand: "About Nervos"
+
   comments:
     create_comment: "Comment"
     no_comment: "No Comment at the moment"

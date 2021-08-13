@@ -34,6 +34,9 @@ require("vendor/social-share-button");
 
 import { createConsumer } from "@rails/actioncable";
 
+import Simditor from "simditor";
+window.Simditor = Simditor;
+
 window.App = {
   turbolinks: false,
   mobile: false,

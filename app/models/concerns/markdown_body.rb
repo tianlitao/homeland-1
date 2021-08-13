@@ -8,6 +8,10 @@ module MarkdownBody
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
+  def body_real_html
+    show_html(body)
+  end
+
   def body_html
     markdown(body)
   end

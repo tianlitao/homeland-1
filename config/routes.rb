@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :teams
 
-  root to: "topics#index"
+  root to: "topics#post_index"
   match "/uploads/:path(![large|lg|md|sm|xs])", to: "home#uploads", via: :get, constraints: {
     path: /[\w\d.\/\-]+/i
   }
@@ -126,6 +126,7 @@ Rails.application.routes.draw do
     resources :applications
     resources :stats
     resources :plugins
+    resources :tasks
   end
 
   get "api", to: "home#api", as: "api"

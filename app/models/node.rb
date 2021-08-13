@@ -10,6 +10,7 @@ class Node < ApplicationRecord
 
   scope :hots, -> { order(topics_count: :desc) }
   scope :sorted, -> { order(sort: :desc) }
+  scope :posts, -> { where(node_type: 'Post') }
 
   form_select :name
 
@@ -27,5 +28,9 @@ class Node < ApplicationRecord
     Rails.cache.fetch("#{cache_key_with_version}/summary_html") do
       Homeland::Markdown.call(summary || "")
     end
+  end
+
+  def is_post?
+    self.node_type == 'Post'
   end
 end

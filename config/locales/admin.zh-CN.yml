@@ -1,4 +1,6 @@
 "zh-CN":
+  plugin:
+    site: 生态
   admin:
     menu:
       root_path: "概况"
@@ -7,6 +9,7 @@
       nodes: "节点"
       wiki: "Wiki"
       topics: "话题"
+      home: "首页"
       replies: "回复"
       photos: "图片"
       comments: "评论"
@@ -16,6 +19,7 @@
       applications: "三方应用"
       background_jobs: "异步任务"
       database: "数据库状态"
+      tasks: "抓取任务"
     overview: "概览"
     dashboard:
       boot_at_html: 服务启动于：%{time}
@@ -40,6 +44,9 @@
     nodes:
       new: 新建节点
       edit: 修改节点
+    tasks:
+      new: 新建任务
+      edit: 修改任务
     topic_list: "话题列表"
     check_photo: "瀏覽圖片"
     reboot_successfully: 已经发起了重启命令，Homeland 在后台异步重启，你可以刷新页面，通过服务启动时间变化来确定重启是否完成。

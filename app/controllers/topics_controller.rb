@@ -12,9 +12,22 @@ class TopicsController < ApplicationController
   def index
     @suggest_topics = []
     if params[:page].to_i <= 1
-      @suggest_topics = topics_scope.suggest.includes(:node).limit(3)
+      @suggest_topics = topics_scope.without_post_nodes.suggest.includes(:node).limit(3)
     end
-    @topics = topics_scope.without_suggest.last_actived.includes(:node).page(params[:page])
+    @topics = topics_scope.without_post_nodes.without_suggest.last_actived.includes(:node).page(params[:page])
+    @page_title = t("menu.topics")
+    @read_topic_ids = []
+    if current_user
+      @read_topic_ids = current_user.filter_readed_topics(@topics + @suggest_topics)
+    end
+  end
+
+  def post_index
+    @suggest_topics = []
+    if params[:page].to_i <= 1
+      @suggest_topics = topics_scope.with_post_nodes.suggest.includes(:node).limit(3)
+    end
+    @topics = topics_scope.with_post_nodes.without_suggest.last_actived.includes(:node).page(params[:page])
     @page_title = t("menu.topics")
     @read_topic_ids = []
     if current_user

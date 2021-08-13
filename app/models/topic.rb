@@ -44,6 +44,8 @@ class Topic < ApplicationRecord
   scope :popular, -> { where("likes_count > 5") }
   scope :without_ban, -> { where.not(grade: :ban) }
   scope :without_hide_nodes, -> { exclude_column_ids("node_id", Topic.topic_index_hide_node_ids) }
+  scope :without_post_nodes, -> { exclude_column_ids("node_id", Node.posts.ids) }
+  scope :with_post_nodes, -> { where(node_id: Node.posts.ids) }
 
   scope :without_node_ids, ->(ids) { exclude_column_ids("node_id", ids) }
   scope :without_users, ->(ids) { exclude_column_ids("user_id", ids) }

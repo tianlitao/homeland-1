@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_032709) do
+ActiveRecord::Schema.define(version: 2021_05_26_102623) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "actions", id: :serial, force: :cascade do |t|
@@ -83,6 +82,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_032709) do
     t.integer "topics_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "node_type", default: "Post"
+    t.index ["node_type"], name: "index_nodes_on_node_type"
     t.index ["sort"], name: "index_nodes_on_sort"
   end
 
@@ -180,8 +181,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_032709) do
     t.integer "changes_cout", default: 1, null: false
     t.integer "comments_count", default: 0, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
@@ -191,6 +192,26 @@ ActiveRecord::Schema.define(version: 2021_04_09_032709) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_photos_on_user_id"
+  end
+
+  create_table "post_infos", force: :cascade do |t|
+    t.integer "topic_id"
+    t.string "url"
+    t.string "uuid"
+    t.string "task_category"
+    t.string "author"
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_post_infos_on_topic_id"
+    t.index ["uuid", "task_category"], name: "index_post_infos_on_uuid_and_task_category", unique: true
+  end
+
+  create_table "post_nodes", force: :cascade do |t|
+    t.string "name"
+    t.integer "sort"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
@@ -277,9 +298,18 @@ ActiveRecord::Schema.define(version: 2021_04_09_032709) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["deleted_at"], name: "index_sites_on_deleted_at"
+    t.index ["site_node_id", "deleted_at"], name: "index_sites_on_site_node_id_and_deleted_at"
     t.index ["site_node_id"], name: "index_sites_on_site_node_id"
     t.index ["url"], name: "index_sites_on_url"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.text "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category"], name: "index_tasks_on_category"
   end
 
   create_table "team_users", id: :serial, force: :cascade do |t|
@@ -315,12 +345,14 @@ ActiveRecord::Schema.define(version: 2021_04_09_032709) do
     t.datetime "updated_at"
     t.datetime "closed_at"
     t.integer "team_id"
+    t.string "node_type", default: "Post"
     t.index ["deleted_at"], name: "index_topics_on_deleted_at"
     t.index ["grade"], name: "index_topics_on_grade"
     t.index ["last_active_mark"], name: "index_topics_on_last_active_mark"
     t.index ["last_reply_id"], name: "index_topics_on_last_reply_id"
     t.index ["likes_count"], name: "index_topics_on_likes_count"
     t.index ["node_id", "deleted_at"], name: "index_topics_on_node_id_and_deleted_at"
+    t.index ["node_type"], name: "index_topics_on_node_type"
     t.index ["suggested_at"], name: "index_topics_on_suggested_at"
     t.index ["team_id"], name: "index_topics_on_team_id"
     t.index ["user_id"], name: "index_topics_on_user_id"

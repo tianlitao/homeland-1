@@ -41,6 +41,8 @@ spec/examples.txt
 /storage/*
 /plugins/*
 !/plugins/test/
+!/plugins/site-master/
+!/plugins/press-master/
 app.local.env
 *.tmp
 /node_modules

@@ -1,0 +1,25 @@
+<% content_for :sitemap do %>
+  <span class="current"><%= t("admin.menu.tasks")%></span>
+<% end %>
+<div class="toolbar">
+  <%= link_to t("admin.tasks.new"), new_admin_task_path, class: "btn btn-secondary" %>
+</div>
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">#</td>
+    <td>Name</td>
+    <td>Category</td>
+    <td>Url</td>
+    <td></td>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td class="first"><%= task.id %></td>
+      <td><%= task.name %></td>
+      <td><%= Task::CATEGORY[task.category] %></td>
+      <td><%= link_to task.url, task.url %></td>
+      <td><%= link_to '', edit_admin_task_path(task), class: "fa fa-edit" %>
+        <%= link_to '', admin_task_path(task), 'data-confirm' => 'Are you sure?' , method: :delete, class: "fa fa-trash" %></td>
+    </tr>
+  <% end %>
+</table>

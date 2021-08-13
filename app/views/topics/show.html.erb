@@ -35,7 +35,7 @@
       <% end %>
       <div class="card-body markdown markdown-toc">
         <%= raw Setting.before_topic_html %>
-        <%= @topic.body_html %>
+        <%= @node.is_post? ? @topic.body_real_html : @topic.body_html %>
         <%= raw Setting.after_topic_html %>
       </div>
       <div class="card-footer clearfix">

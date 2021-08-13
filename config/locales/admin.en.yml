@@ -7,6 +7,7 @@
       nodes: "Nodes"
       wiki: "Wiki"
       topics: "Topics"
+      home: "Home"
       replies: "Replies"
       photos: "Photos"
       comments: "Comments"
@@ -16,6 +17,7 @@
       applications: "Applications"
       background_jobs: "Background Jobs"
       database: "Database"
+      tasks: "Tasks"
     overview: "Overview"
     dashboard:
       boot_at_html: Application boot at %{time}
@@ -40,6 +42,9 @@
     nodes:
       new: New Node
       edit: Edit Node
+    tasks:
+      new: New Task
+      edit: Edit Task
     topic_list: "Topic List"
     check_photo: "View Photo"
     reboot_successfully: A reboot command has been initiated, and the Homeland is restarting in the background. You can refresh the page and determine whether the restart is complete by boot time.

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source "https://gems.ruby-china.com"
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
@@ -91,9 +91,14 @@ gem "puma"
 # API cors
 gem "rack-cors", require: "rack/cors"
 
+gem 'rest-client'
+
 gem "bootsnap"
 
 gem "puma_worker_killer"
+
+# Editor
+gem 'simditor'
 
 group :development do
   gem "spring"
@@ -110,4 +115,6 @@ group :development, :test do
   gem "factory_bot_rails"
 
   gem "standard"
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
 end

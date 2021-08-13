@@ -114,6 +114,8 @@
     likes: "你收藏的话题"
     teams: "公司／组织"
     back_to_front: "回到前台"
+    understand: "了解Nervos"
+
   comments:
     create_comment: "发表评论"
     no_comment: "暂无评论"
