@@ -119,7 +119,6 @@ window.App = {
       result.push(item);
     }
 
-    console.log(result);
     return _.uniq(result);
   },
 
