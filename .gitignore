@@ -43,6 +43,7 @@ spec/examples.txt
 !/plugins/test/
 !/plugins/site-master/
 !/plugins/press-master/
+!/plugins/wiki-master/
 app.local.env
 *.tmp
 /node_modules
