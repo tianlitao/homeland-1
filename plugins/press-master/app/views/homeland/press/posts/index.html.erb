@@ -1,0 +1,19 @@
+<% title_tag t('plugin.press') %>
+
+<div class="row">
+  <div class="col-md-9">
+    <div id="post-list" class="card post-<%= action_name %>">
+      <div class="card-body">
+        <% if @posts.blank? %>
+          <div class="no-result">暂无任何文章</div>
+        <% else %>
+          <%= render partial: 'post', collection: @posts %>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+  <%= render 'sidebar' %>
+</div>

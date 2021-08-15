@@ -1,0 +1,37 @@
+<%= form_for post do |f| %>
+  <%= render "/shared/error_messages", target: post %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :slug %>
+    <%= f.text_field :slug, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :summary %>
+    <%= f.text_area :summary, class: "form-control" %>
+  </div>
+
+  <%#= render "/shared/editor_toolbar" %>
+
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control', input_html: { rows: 20 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit t("common.save"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-topic" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    var editor = new Simditor({
+        textarea: $('#post_body'),
+        pasteImage: true,
+        defaultImage: '<%= image_path "upload-loading.png" %>',
+        upload: {url: '/photos/simditor_upload'}
+    });
+</script>
