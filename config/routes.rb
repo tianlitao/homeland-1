@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :teams
 
-  root to: "topics#post_index"
+  root to: redirect {"posts"}
   match "/uploads/:path(![large|lg|md|sm|xs])", to: "home#uploads", via: :get, constraints: {
     path: /[\w\d.\/\-]+/i
   }
@@ -88,7 +88,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :photos
+  resources :photos do
+    collection do
+      post :simditor_upload
+    end
+  end
   resources :likes
 
   get "/search", to: "search#index", as: "search"

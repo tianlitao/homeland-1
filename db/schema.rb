@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_102623) do
+ActiveRecord::Schema.define(version: 2021_05_27_071907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_102623) do
   end
 
   create_table "post_infos", force: :cascade do |t|
-    t.integer "topic_id"
+    t.integer "post_id"
     t.string "url"
     t.string "uuid"
     t.string "task_category"
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_102623) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["topic_id"], name: "index_post_infos_on_topic_id"
+    t.index ["post_id"], name: "index_post_infos_on_post_id"
     t.index ["uuid", "task_category"], name: "index_post_infos_on_uuid_and_task_category", unique: true
   end
 
@@ -227,6 +227,8 @@ ActiveRecord::Schema.define(version: 2021_05_26_102623) do
     t.datetime "published_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
+    t.index ["category"], name: "index_posts_on_category"
     t.index ["published_at"], name: "index_posts_on_published_at"
     t.index ["slug"], name: "index_posts_on_slug"
     t.index ["status"], name: "index_posts_on_status"
@@ -298,6 +300,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_102623) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "avatar"
     t.index ["site_node_id", "deleted_at"], name: "index_sites_on_site_node_id_and_deleted_at"
     t.index ["site_node_id"], name: "index_sites_on_site_node_id"
     t.index ["url"], name: "index_sites_on_url"

@@ -1,0 +1,35 @@
+<% title_tag t('plugin.site') %>
+
+<div id="site_nodes">
+  <% if can? :create, ::Site %>
+  <div class="card">
+    <div class="card-body">
+      <%= raw Setting.site_index_html %>
+      <%#= link_to('提交生态项目', new_site_path, class: "btn btn-primary")%>
+    </div>
+  </div>
+  <% end %>
+
+  <% cache(["plugin/sites", t: CacheVersion.sites_updated_at, d: Date.today]) do %>
+    <% @site_nodes.each do |node| %>
+    <div class="card">
+      <div class="card-header"><%= node.name %></div>
+      <div class="card-body row">
+        <% node.sites.each do |item| %>
+          <div class="col-md-3">
+            <%= link_to item.url, target: "_blank", rel: "twipsy", class: 'site' do %>
+              <%= image_tag(item.favicon_url, class: "favicon")%>
+              <div>
+                <p class="title"><%= item.name %></p>
+                <span class="desc">
+                  <%= item.url %>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>

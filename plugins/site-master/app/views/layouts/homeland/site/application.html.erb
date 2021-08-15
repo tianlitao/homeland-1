@@ -1,0 +1,47 @@
+<% content_for :stylesheets do %>
+  <style type="text/css">
+    #site_nodes .site {
+      margin-bottom: 12px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    #site_nodes .site .favicon {
+      width: 50px;
+      height: 50px;
+      margin-right: 5px;
+    }
+    #site_nodes .site .title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 30px;
+      color: #333;
+      margin-bottom: 0px;
+      white-space:nowrap;
+      word-break: break-all;
+    }
+    #site_nodes .site .desc {
+      font-size: 0.75rem;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      line-height: 1.66;
+      letter-spacing: 0.03333em;
+      color: rgb(153, 153, 153);
+      word-break: break-all;
+    }
+      #site_nodes .site:hover{
+        background-color: #f8f8f8;
+      }
+  </style>
+<% end %>
+<% content_for :main do %>
+  <div id="homeland-site">
+    <%= yield %>
+  </div>
+<% end %>
+<%= render template: "/layouts/application" %>
