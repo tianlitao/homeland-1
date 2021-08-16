@@ -182,6 +182,7 @@
     twitter_api_secret: "Twitter 登录 API secret key"
     wechat_api_key: "微信登录 API key (留空禁用）"
     wechat_api_secret: "微信登录 API secret key"
+    unipass_url: "Unipass登录Url"
     imageproxy_url: '配置外部图片代理，利用 <a href="https://www.github.com/willnorris/imageproxy">ImageProxy</a> 来实现，例如 <code>https://imageproxy.your-host.com/1000x/</code>，留空则不启用'
   pagination:
     next: "下一页"

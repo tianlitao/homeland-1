@@ -23,8 +23,13 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
-    omniauth_callbacks: "users/omniauth_callbacks"
+    omniauth_callbacks: "users/omniauth_callbacks",
   }
+
+  devise_scope :user do
+    get 'account/unipass_login', :to => "users/sessions#unipass_login"
+  end
+
 
   resource :setting do
     member do

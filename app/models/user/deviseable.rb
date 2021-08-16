@@ -101,6 +101,25 @@ class User
           return nil
         end
       end
+
+      def find_or_create_for_unipass(response)
+        provider = 'unipass'
+        uid = response["pubkey"].to_s
+        data = {'email' => response['email']}
+
+        user = Authorization.find_by(provider: provider, uid: uid).try(:user)
+        return user if user
+
+        user = User.new_from_provider_data(provider, uid, data)
+        if user.save(validate: false)
+          Authorization.find_or_create_by(provider: provider, uid: uid, user_id: user.id)
+          return user
+        end
+
+        Rails.logger.warn("User.create_from_hash error: #{user.errors.inspect}")
+        return nil
+      end
+
     end
   end
 end

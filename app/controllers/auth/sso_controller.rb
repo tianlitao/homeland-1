@@ -8,14 +8,14 @@ module Auth
       destination_url = cookies.delete(:destination_url)
       return_path = params[:return_path] || root_path
 
-      if destination_url && return_path == root_path
-        uri = URI.parse(destination_url)
-        return_path = "#{uri.path}#{uri.query ? "?" + uri.query : ""}"
-      end
-
-      sso = Homeland::SSO.generate_sso(return_path)
-      Rails.logger.warn("Verbose SSO log: Started SSO process\n\n#{sso.diagnostics}")
-      redirect_to sso.to_url
+      # if destination_url && return_path == root_path
+      #   uri = URI.parse(destination_url)
+      #   return_path = "#{uri.path}#{uri.query ? "?" + uri.query : ""}"
+      # end
+      # sso = Homeland::SSO.generate_sso(return_path)
+      # Rails.logger.warn("Verbose SSO log: Started SSO process\n\n#{sso.diagnostics}")
+      # redirect_to sso.to_url
+      redirect_to Homeland::SSO.sso_url.to_s + Setting.base_url.to_s + "/account/unipass_login"
     end
 
     def login

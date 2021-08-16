@@ -178,6 +178,7 @@
     twitter_api_secret: "Twitter login API secret key"
     wechat_api_key: "Wechat API key (Keep empty to disable)"
     wechat_api_secret: "Wechat API secret key"
+    unipass_url: "Unipass Url Login Url"
     imageproxy_url: 'Use <a href="https://www.github.com/willnorris/imageproxy">ImageProxy</a> as outside image proxy. For example: <code>https://imageproxy.your-host.com/1000x/</code>, leave empty to disable.'
   pagination:
     next: "Next"
