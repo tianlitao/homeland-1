@@ -62,7 +62,7 @@ class User
             end
 
           user.name = data["name"]
-          user.login = Homeland::Username.sanitize(data["nickname"])
+          user.login = Homeland::Username.sanitize(data["nickname"]) rescue nil
 
           if provider == "github"
             user.github = data["nickname"]
