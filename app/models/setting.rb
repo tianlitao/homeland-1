@@ -191,7 +191,8 @@ class Setting < RailsSettings::Base
 
   class << self
     def protocol
-      Rails.env.production? ? "https" : "http"
+      #todo 目前正式站是http后续升级为https
+      Rails.env.production? ? "http" : "http"
     end
 
     def safe_domain
