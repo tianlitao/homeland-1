@@ -15,15 +15,15 @@ module UsersHelper
     if user.is_a? User
       user_type = user.user_type
       login = user.login
-      label = user_type == :team ? user.name : user.login
+      label = user_type == :team ? user.name : user.name
       name = user.name
     end
 
     name ||= login
     options[:class] ||= "#{user_type}-name"
-    options["data-name"] = name
+    options["data-name"] = login
 
-    link_to(label, "/#{login}", options)
+    link_to(label, "/#{name}", options)
   end
   alias_method :team_name_tag, :user_name_tag
 
