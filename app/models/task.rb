@@ -14,6 +14,7 @@ class Task < ApplicationRecord
           c_url = "https://oss-cdn2.bihu-static.com/#{content['contentUrl']}"
           response = RestClient::Request.execute(:url => c_url, :method => :get, :verify_ssl => false).body.force_encoding('utf-8')
           post_info = PostInfo.find_or_initialize_by(task_category: 'bihu', uuid: content['id'])
+          break unless post_info.new_record?
           post_info.assign_attributes(url: "https://bihu.com/article/" + content['id'].to_s,
                                       published_at: Time.at(content['createTs'].to_s[0..-4].to_i),
                                       author:  article['author']['nickname']
