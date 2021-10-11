@@ -100,6 +100,7 @@ gem "puma_worker_killer"
 # Editor
 gem 'simditor'
 
+gem 'warden_oauth'
 group :development do
   gem "spring"
   gem "byebug"
@@ -115,6 +116,7 @@ group :development, :test do
   gem "factory_bot_rails"
 
   gem "standard"
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
+  gem 'pry'
 end
+
+gem 'whenever', require: false

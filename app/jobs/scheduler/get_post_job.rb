@@ -3,7 +3,7 @@
 module Scheduler
   class GetPostJob < ApplicationJob
     def perform
-      Taks.each do |task|
+      Task.all.each do |task|
         task.bihu
       end
     end
