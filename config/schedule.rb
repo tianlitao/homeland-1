@@ -27,6 +27,6 @@ every 1.minutes do
   rake "binance:snatch_article"
 end
 
-every 30.minutes do
-  rake "bihu:snatch_article"
-end
+# every 30.minutes do
+#   rake "bihu:snatch_article"
+# end
