@@ -22,8 +22,8 @@ class DasAccount < ApplicationRecord
       data['content'].split('\n').each do |content|
         das = DasAccount.find_or_initialize_by(domain: content[/(?<=\*\* ).*(?= \*\*)/])
         das.start_at = data['timestamp'].to_datetime
-        das.year = content[/(?<=registed for ).*(?= year\(s\))/]
-        das.end_at = das.start_at + das.year.year
+        das.year = content[/(?<=registed for ).*(?= year\(s\))/].to_i
+        das.end_at = das.start_at + das.year&.year
         das.invite_domain = content[/(?<=invited by ).*$/]
         das.discord_id = data['id']
         das.save if das.changed?
