@@ -11,7 +11,7 @@ class DasListSale < ApplicationRecord
     end
 
     if self.list_time.present? && self.list_time_changed? && self.filter_list
-      $twitter_client.update(final_twitter)
+      $twitter_client.update(list_twitter)
     end
 
   end
@@ -22,7 +22,8 @@ class DasListSale < ApplicationRecord
   end
 
   def list_twitter
-    "|￣￣￣￣￣￣￣￣￣￣￣￣￣|
+    "
+|￣￣￣￣￣￣￣￣￣￣￣￣￣|
     🚀Buy #{self.domain}!
 |＿＿＿＿＿＿＿＿＿＿＿＿＿|
                    \ (👀) /
