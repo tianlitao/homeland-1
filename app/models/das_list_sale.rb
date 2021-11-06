@@ -5,7 +5,7 @@ class DasListSale < ApplicationRecord
     self.das_accoount_id = DasAccount.find_by(domain: self.domain)&.id
   end
 
-  after_save do
+  before_save do
     if self.sale_time.present? && self.sale_time_changed?
       $twitter_client.update(final_twitter)
     end
