@@ -22,16 +22,14 @@ class DasListSale < ApplicationRecord
   end
 
   def list_twitter
-    "
-|￣￣￣￣￣￣￣￣￣￣￣￣￣|
+    "|￣￣￣￣￣￣￣￣￣￣￣￣￣|
     🚀Buy #{self.domain}!
 |＿＿＿＿＿＿＿＿＿＿＿＿＿|
-                   \ (👀) /
-                     \      /
+                   \\ (👀) /
+                     \\      /
                       ——
                        |_   |_
-@realDASystems
-​https://bestdas.com/account/#{self.domain}?inviter=cryptofans.bit​"
+@realDASystems ​https://bestdas.com/account/#{self.domain}?inviter=cryptofans.bit​"
   end
 
   def filter_list
