@@ -40,8 +40,8 @@ class DasAccount < ApplicationRecord
         title = bed['title']
         list_sale = DasListSale.find_or_initialize_by(list_discord_id: data['id'], domain: title[/(?<=\*\* ).*(?= \*\*)/])
         list_sale.list_time = data['timestamp'].to_datetime
-        list_sale.list_ckb_price = title[/(?<=listed for ).*(?= CKB\()/].gsub(',', '')
-        list_sale.list_price = title[/(?<= CKB\(\$).*(?=\)\. Buy Now)/].gsub(',', '')
+        list_sale.list_ckb_price = title[/(?<=listed for ).*(?= CKB\()/].to_s.gsub(',', '')
+        list_sale.list_price = title[/(?<= CKB\(\$).*(?=\)\. Buy Now)/].to_s.gsub(',', '')
         list_sale.save if list_sale.changed?
       end
     end
@@ -57,8 +57,8 @@ class DasAccount < ApplicationRecord
       list_sale.is_list = false
       list_sale.sale_discord_id = data['id']
       list_sale.sale_time = data['timestamp'].to_datetime
-      list_sale.final_price = content[/(?<=CKB\(\$).*(?=\).)/].gsub(',', '')
-      list_sale.final_ckb_price = content[/(?<=bought for ).*(?= CKB\(\$)/].gsub(',', '')
+      list_sale.final_price = content[/(?<=CKB\(\$).*(?=\).)/].to_s.gsub(',', '')
+      list_sale.final_ckb_price = content[/(?<=bought for ).*(?= CKB\(\$)/].to_s.gsub(',', '')
       list_sale.save if list_sale.changed?
     end
   end
