@@ -23,10 +23,14 @@ set :output, "#{RAILS_ROOT}/log/whenever.log"
 # Learn more: http://github.com/javan/whenever
 
 
-every 1.minutes do
-  rake "binance:snatch_article"
-end
+# every 1.minutes do
+#   rake "binance:snatch_article"
+# end
 
 # every 30.minutes do
 #   rake "bihu:snatch_article"
 # end
+
+every 2.minutes do
+  rake "discord:get_das_acount"
+end

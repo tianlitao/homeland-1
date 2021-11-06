@@ -120,3 +120,5 @@ group :development, :test do
 end
 
 gem 'whenever', require: false
+
+gem 'twitter'
