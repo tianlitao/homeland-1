@@ -34,3 +34,7 @@ set :output, "#{RAILS_ROOT}/log/whenever.log"
 every 2.minutes do
   rake "discord:get_das_acount"
 end
+
+every 1.minutes do
+  rake "discord:post_twitter"
+end

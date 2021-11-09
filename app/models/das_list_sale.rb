@@ -7,15 +7,26 @@ class DasListSale < ApplicationRecord
 
   before_save do
     if self.sale_time.present? && self.sale_time_changed?
-      $twitter_client.update(final_twitter)
+      self.twitter_sale = false
     end
 
     if self.list_time.present? && self.list_time_changed? && self.filter_list
-      $twitter_client.update(list_twitter)
+      self.twitter_list = false
     end
 
   end
 
+  def self.check_post_twitter
+    if sale = DasListSale.where(twitter_sale: false).order("sale_time desc").first
+      $twitter_client.update(sale.final_twitter)
+      return true
+    end
+    if sale = DasListSale.where(twitter_list: false).order("list_time desc").first
+      $twitter_client.update(sale.list_twitter)
+      return true
+    end
+    return false
+  end
 
   def final_twitter
     "🎉🎉 Wow, #{self.domain} bought for #{self.final_ckb_price} CKB($#{self.final_price}), yield: #{("%.2f" % (self.final_price.to_f*100/5.0))}%. Visit https://das.la/​, claim a better DAS Account. #domains #das $CKB  @realDASystems "
@@ -29,13 +40,13 @@ class DasListSale < ApplicationRecord
                      \\      /
                       ——
                        |_   |_
-@realDASystems ​https://bestdas.com/account/#{self.domain}?inviter=cryptofans.bit​"
+#domains #NFTs ​https://bestdas.com/account/#{self.domain}?inviter=cryptofans.bit​"
   end
 
   def filter_list
     depth = self.domain.gsub('.bit', '').strip.size
     case
-      when depth >= 15
+      when depth >= 8 || self.list_ckb_price < 1000
         return false
       when depth >= 5 && self.list_ckb_price > 1000000
         return false
