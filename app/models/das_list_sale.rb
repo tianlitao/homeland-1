@@ -42,7 +42,7 @@ class DasListSale < ApplicationRecord
                      \\      /
                       ——
                        |_   |_
-#domains #NFTs ​https://bestdas.com/account/#{self.domain}?inviter=cryptofans.bit​"
+#domains #NFTs ​https://bestdas.com/account/#{URI::encode(self.domain)}?inviter=cryptofans.bit​"
   end
 
   def filter_list
