@@ -19,17 +19,19 @@ class DasListSale < ApplicationRecord
   def self.check_post_twitter
     if sale = DasListSale.where(twitter_sale: false).order("sale_time desc").first
       $twitter_client.update(sale.final_twitter)
+      sale.update(twitter_sale: true)
       return true
     end
     if sale = DasListSale.where(twitter_list: false).order("list_time desc").first
       $twitter_client.update(sale.list_twitter)
+      sale.update(twitter_list: true)
       return true
     end
     return false
   end
 
   def final_twitter
-    "🎉🎉 Wow, #{self.domain} bought for #{self.final_ckb_price} CKB($#{self.final_price}), yield: #{("%.2f" % (self.final_price.to_f*100/5.0))}%. Visit https://das.la/​, claim a better DAS Account. #domains #das $CKB  @realDASystems "
+    "🎉🎉 Wow, #{self.domain} bought for #{self.final_ckb_price} CKB($#{self.final_price}), yield: #{("%.2f" % (self.final_price.to_f*100/5.0))}%. Visit https://das.la/​, claim a better DAS Account. #domains #das $CKB"
   end
 
   def list_twitter
