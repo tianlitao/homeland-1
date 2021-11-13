@@ -22,11 +22,12 @@ class DasListSale < ApplicationRecord
       sale.update(twitter_sale: true)
       return true
     end
-    if sale = DasListSale.where(twitter_list: false).order("list_time desc").first
-      $twitter_client.update(sale.list_twitter)
-      sale.update(twitter_list: true)
-      return true
-    end
+    #注释上架twittet
+    # if sale = DasListSale.where(twitter_list: false).order("list_time desc").first
+    #   $twitter_client.update(sale.list_twitter)
+    #   sale.update(twitter_list: true)
+    #   return true
+    # end
     return false
   end
 
